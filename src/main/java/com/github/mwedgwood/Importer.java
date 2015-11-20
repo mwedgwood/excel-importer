@@ -10,7 +10,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Spliterator;
+import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -39,7 +42,6 @@ public class Importer<T> {
 
         return rowStream
                 .map(new RowMapper<>(klass, columnIndexToSetter)::map)
-                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
